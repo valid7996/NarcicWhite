@@ -10,7 +10,7 @@ import (
 	"narcicwhite-desktop/internal/model"
 )
 
-const stormDNSProfileSchema = "narcicwhite.profile"
+const stormDNSProfileSchema = "whitedns.profile"
 
 var stormDNSProfileURLPattern = regexp.MustCompile(`(?i)(stormdns|masterdns)://([A-Za-z0-9+/_=-]+)`)
 

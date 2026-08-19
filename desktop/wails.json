@@ -1,0 +1,20 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "Narcic White",
+  "outputfilename": "Narcic White",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "NarcicWhite",
+    "email": ""
+  },
+  "info": {
+    "companyName": "NarcicWhite",
+    "productName": "Narcic White",
+    "productVersion": "0.0.0",
+    "copyright": "GPL-3.0-or-later",
+    "comments": "https://github.com/YOUR-ORG/narcic-white"
+  }
+}

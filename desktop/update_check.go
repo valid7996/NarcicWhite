@@ -32,7 +32,7 @@ const (
 	// The releases API, unauthenticated. Sixty requests an hour per address,
 	// which is why the result is cached rather than fetched whenever something
 	// asks.
-	latestReleaseURL = "https://api.github.com/repos/NarcicWhite/Narcic-White/releases/latest"
+	latestReleaseURL = "https://api.github.com/repos/YOUR-ORG/narcic-white/releases/latest" // TODO: set your real GitHub org/repo
 
 	updateCheckInterval = 6 * time.Hour
 	updateCheckTimeout  = 12 * time.Second

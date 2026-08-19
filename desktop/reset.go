@@ -71,7 +71,7 @@ func (a *App) ResetAppData() (model.AppState, error) {
 	a.ensureNarcicWhiteSubscriptionLocked()
 	// A reset is a fresh install, and a fresh install offers the legacy import
 	// again — but only if there is still something there to import.
-	a.legacyImport = profiles.ReadLegacyImport(legacyNarcicWhiteStatePath())
+	a.legacyImport = profiles.ReadLegacyImport(legacyWhiteDNSStatePath())
 	next, err := a.saveLocked()
 	a.mu.Unlock()
 	if err != nil {

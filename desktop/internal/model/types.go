@@ -1033,21 +1033,10 @@ func DefaultAppState() AppState {
 		ResolverProfiles:            []ResolverProfile{DefaultResolverProfile()},
 		SettingsProfiles:            []SettingsProfile{DefaultSettingsProfile()},
 		V2RayProfiles:               []V2RayProfile{},
-		V2RaySubscriptions: []V2RaySubscription{
-			{
-				ID:   "default-free-v2ray-configs-top100",
-				Name: "Free V2ray Configs (Top 100)",
-				URL:  "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/top100.txt",
-			},
-			{
-				ID:   "default-free-v2ray-configs-verified",
-				Name: "Free V2ray Configs (Verified)",
-				URL:  "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt",
-			},
-		},
-		V2RaySettingsProfiles:  []V2RaySettingsProfile{DefaultV2RaySettingsProfile()},
-		NarcicWhiteFrontingIPs: []string{},
-		NarcicWhite:            DefaultNarcicWhiteSettings(),
+		V2RaySubscriptions:          []V2RaySubscription{},
+		V2RaySettingsProfiles:       []V2RaySettingsProfile{DefaultV2RaySettingsProfile()},
+		NarcicWhiteFrontingIPs:      []string{},
+		NarcicWhite:                 DefaultNarcicWhiteSettings(),
 		Runtime: RuntimeStatus{
 			Status: RuntimeDisconnected,
 			Logs:   []string{"Idle"},

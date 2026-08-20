@@ -393,13 +393,13 @@ package-linux: validate-version prepare-package
 	$(MAKE) package-assets
 
 package-linux-distros: package-linux
-	APP_NAME="$(APP_NAME)" VERSION="$(APP_VERSION)" PACKAGE_SOURCE_DIR="build/bin" PACKAGE_OUTPUT_DIR="$(LINUX_PACKAGE_OUTPUT_DIR)" LINUX_ARCH="$(LINUX_CLIENT_ARCH)" LINUX_WEBKIT="$(LINUX_WEBKIT)" LINUX_ASSET_SUFFIX="$(LINUX_ASSET_SUFFIX)" LINUX_PACKAGE_FORMATS="$(LINUX_PACKAGE_FORMATS)" ./scripts/package-linux-dist.sh
+	APP_NAME="$(APP_NAME)" VERSION="$(APP_VERSION)" PACKAGE_SOURCE_DIR="build/bin" PACKAGE_OUTPUT_DIR="$(LINUX_PACKAGE_OUTPUT_DIR)" LINUX_ARCH="$(LINUX_CLIENT_ARCH)" LINUX_WEBKIT="$(LINUX_WEBKIT)" LINUX_ASSET_SUFFIX="$(LINUX_ASSET_SUFFIX)" LINUX_PACKAGE_FORMATS="$(LINUX_PACKAGE_FORMATS)" sh scripts/package-linux-dist.sh
 
 package-linux-all-docker: validate-version
-	VERSION="$(APP_VERSION)" ALL_LINUX_PLATFORMS="$(ALL_LINUX_PLATFORMS)" LINUX_DOCKER="$(LINUX_DOCKER)" LINUX_DOCKER_IMAGE="$(LINUX_DOCKER_IMAGE)" LINUX_NODE_MAJOR="$(LINUX_NODE_MAJOR)" LINUX_PACKAGE_FORMATS="$(LINUX_PACKAGE_FORMATS)" RELEASE_LDFLAGS="$(RELEASE_LDFLAGS)" HELPER_GO_LDFLAGS="$(HELPER_GO_LDFLAGS)" UPX="$(UPX)" UPX_FLAGS="$(UPX_FLAGS)" ./scripts/build-linux-releases-docker.sh
+	VERSION="$(APP_VERSION)" ALL_LINUX_PLATFORMS="$(ALL_LINUX_PLATFORMS)" LINUX_DOCKER="$(LINUX_DOCKER)" LINUX_DOCKER_IMAGE="$(LINUX_DOCKER_IMAGE)" LINUX_NODE_MAJOR="$(LINUX_NODE_MAJOR)" LINUX_PACKAGE_FORMATS="$(LINUX_PACKAGE_FORMATS)" RELEASE_LDFLAGS="$(RELEASE_LDFLAGS)" HELPER_GO_LDFLAGS="$(HELPER_GO_LDFLAGS)" UPX="$(UPX)" UPX_FLAGS="$(UPX_FLAGS)" sh scripts/build-linux-releases-docker.sh
 
 package-linux-fedora-rpm-docker: validate-version
-	VERSION="$(APP_VERSION)" LINUX_DOCKER="$(LINUX_DOCKER)" LINUX_CLIENT_ARCH="$(LINUX_CLIENT_ARCH)" RELEASE_LDFLAGS="$(RELEASE_LDFLAGS)" HELPER_GO_LDFLAGS="$(HELPER_GO_LDFLAGS)" UPX="$(UPX)" UPX_FLAGS="$(UPX_FLAGS)" ./scripts/build-fedora-rpm-docker.sh
+	VERSION="$(APP_VERSION)" LINUX_DOCKER="$(LINUX_DOCKER)" LINUX_CLIENT_ARCH="$(LINUX_CLIENT_ARCH)" RELEASE_LDFLAGS="$(RELEASE_LDFLAGS)" HELPER_GO_LDFLAGS="$(HELPER_GO_LDFLAGS)" UPX="$(UPX)" UPX_FLAGS="$(UPX_FLAGS)" sh scripts/build-fedora-rpm-docker.sh
 
 package-all: all
 
@@ -492,10 +492,10 @@ test-frontend:
 
 # The mihomo engine, pinned to the same refs Narcic White for Android builds.
 mihomo-core-setup:
-	./scripts/setup-mihomo-core.sh
+	bash scripts/setup-mihomo-core.sh
 
 mihomo-core: mihomo-core-setup
-	TARGET_GOOS="$(TARGET_GOOS)" TARGET_GOARCH="$(TARGET_GOARCH)" ./scripts/build-mihomo-core.sh
+	TARGET_GOOS="$(TARGET_GOOS)" TARGET_GOARCH="$(TARGET_GOARCH)" bash scripts/build-mihomo-core.sh
 
 xray-core:
 	$(MAKE) prepare-embedded-core TARGET_GOOS=$(GOOS_VALUE) TARGET_GOARCH=$(GOARCH_VALUE)
@@ -529,11 +529,11 @@ xray-core-target:
 		if [ "$(TARGET_GOOS)" = "windows" ] && [ -f "cores/wintun.dll" ]; then cp "cores/wintun.dll" "$(XRAY_CACHE_DIR)/wintun.dll"; fi; \
 		chmod 755 "$(XRAY_CACHE_DIR)/$$core"; \
 		if [ ! -f "$(XRAY_CACHE_DIR)/geoip.dat" ] || [ ! -f "$(XRAY_CACHE_DIR)/geosite.dat" ] || { [ "$(TARGET_GOOS)" = "windows" ] && [ ! -f "$(XRAY_CACHE_DIR)/wintun.dll" ]; }; then \
-			TARGET_GOOS="$(TARGET_GOOS)" TARGET_GOARCH="$(TARGET_GOARCH)" XRAY_DEST_DIR="$(XRAY_CACHE_DIR)" XRAY_CORE_VERSION="$(XRAY_CORE_VERSION)" ./scripts/install-xray-core.sh; \
+			TARGET_GOOS="$(TARGET_GOOS)" TARGET_GOARCH="$(TARGET_GOARCH)" XRAY_DEST_DIR="$(XRAY_CACHE_DIR)" XRAY_CORE_VERSION="$(XRAY_CORE_VERSION)" sh scripts/install-xray-core.sh; \
 		fi; \
 		printf 'Cached existing Xray core %s\n' "$(XRAY_CACHE_DIR)/$$core"; \
 	else \
-		TARGET_GOOS="$(TARGET_GOOS)" TARGET_GOARCH="$(TARGET_GOARCH)" XRAY_DEST_DIR="$(XRAY_CACHE_DIR)" XRAY_CORE_VERSION="$(XRAY_CORE_VERSION)" ./scripts/install-xray-core.sh; \
+		TARGET_GOOS="$(TARGET_GOOS)" TARGET_GOARCH="$(TARGET_GOARCH)" XRAY_DEST_DIR="$(XRAY_CACHE_DIR)" XRAY_CORE_VERSION="$(XRAY_CORE_VERSION)" sh scripts/install-xray-core.sh; \
 	fi
 
 clean:

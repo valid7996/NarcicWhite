@@ -180,8 +180,14 @@ const maxValidatorSelectedRangeHosts = 4000000;
 const defaultValidatorWorkers = 128;
 const maxValidatorWorkers = 2048;
 const errorToastTTLMS = 6000;
-const narcicWhiteTelegramUrl = "https://t.me/Narcic_Support"; // TODO: set your real Telegram channel
-const narcicWhiteYoutubeUrl = "https://www.youtube.com/@valid_bv1608?sub_confirmation=1"; // TODO: set your real YouTube channel
+const narcicWhiteTelegramUrl = "https://t.me/Narcic_Support";
+const narcicWhiteYoutubeUrl = "https://www.youtube.com/@valid_bv1608?sub_confirmation=1";
+// A public, community-maintained list, not run or vetted by NarcicWhite. Offered
+// as a one-click "Quick Add" so someone without a subscription of their own has
+// somewhere to start — never added automatically, and never mixed up with the
+// built-in catalogue's own (encrypted, key-gated) address above.
+const communitySubscriptionURL =
+  "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt";
 // Mirrors the limits in internal/model/narcicwhite_settings.go. Values outside them
 // are repaired on save, so these only decide when a control stops accepting more.
 const maxFrontingIPs = 5;
@@ -3624,6 +3630,29 @@ function V2RaySubscriptionsPage({
     setEditorOpen(true);
   }
 
+  const communitySubscriptionAlreadyAdded = state.v2raySubscriptions.some(
+    (subscription) => subscription.url === communitySubscriptionURL
+  );
+
+  async function quickAddCommunitySubscription() {
+    onError("");
+    try {
+      const nextState = await backend.saveV2RaySubscription({
+        id: "",
+        name: "Free V2Ray Configs (Community)",
+        url: communitySubscriptionURL,
+        lastUpdatedAt: "",
+        lastError: "",
+        importedCount: 0,
+        allowInsecureTls: false,
+      });
+      onState(nextState);
+      onSuccess(t("subs.quickAdd.added"));
+    } catch (err) {
+      onError(messageFromError(err));
+    }
+  }
+
   function openExistingSubscription(subscription: V2RaySubscription) {
     onError("");
     setDraft(normalizeV2RaySubscription(subscription));
@@ -3728,10 +3757,22 @@ function V2RaySubscriptionsPage({
         eyebrow="NarcicWhite"
         title={t("nav.subscriptions")}
         actions={
-          <Button type="button" variant="outline" onClick={openNewSubscription}>
-            <Plus />
-            {t("subs.new")}
-          </Button>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={quickAddCommunitySubscription}
+              disabled={communitySubscriptionAlreadyAdded}
+              title={t("subs.quickAdd.hint")}
+            >
+              <Plus />
+              {t("subs.quickAdd")}
+            </Button>
+            <Button type="button" variant="outline" onClick={openNewSubscription}>
+              <Plus />
+              {t("subs.new")}
+            </Button>
+          </div>
         }
       >
         <div className="overflow-hidden rounded-lg border bg-card">

@@ -201,6 +201,12 @@ const strings = {
   "subs.inUse": { en: "In use", fa: "در حال استفاده" },
   "subs.disconnectFirst": { en: "Disconnect first", fa: "اول قطع کنید" },
   "subs.new": { en: "New subscription", fa: "اشتراک جدید" },
+  "subs.quickAdd": { en: "Add community list", fa: "افزودن لیست عمومی" },
+  "subs.quickAdd.added": { en: "Added the community subscription.", fa: "لیست عمومی اضافه شد." },
+  "subs.quickAdd.hint": {
+    en: "Public, unverified nodes shared on GitHub — not run or vetted by NarcicWhite.",
+    fa: "سرورهای عمومی و تأییدنشده از گیت‌هاب — توسط NarcicWhite اداره یا بررسی نمی‌شوند.",
+  },
   "subs.groups": { en: "Subscription groups", fa: "گروه‌های اشتراک" },
   "subs.sources": { en: "{count} sources", fa: "{count} منبع" },
   "subs.empty": { en: "No saved subscription URLs.", fa: "هیچ نشانی اشتراکی ذخیره نشده است." },

@@ -187,7 +187,7 @@ const narcicWhiteYoutubeUrl = "https://www.youtube.com/@valid_bv1608?sub_confirm
 // somewhere to start — never added automatically, and never mixed up with the
 // built-in catalogue's own (encrypted, key-gated) address above.
 const communitySubscriptionURL =
-  "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt";
+  "https://raw.githubusercontent.com/validbv7996/Narcic_APK/refs/heads/main/all.txt";
 // Mirrors the limits in internal/model/narcicwhite_settings.go. Values outside them
 // are repaired on save, so these only decide when a control stops accepting more.
 const maxFrontingIPs = 5;

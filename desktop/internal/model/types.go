@@ -378,7 +378,7 @@ type AppState struct {
 	// provider renames a node, and then it reappears; that is the honest failure
 	// and it is visible, unlike silently hiding some other node.
 	HiddenNodes map[string][]string `json:"hiddenNodes"`
-	NarcicWhite    NarcicWhiteSettings    `json:"narcicWhite"`
+	NarcicWhite NarcicWhiteSettings `json:"narcicWhite"`
 	Runtime     RuntimeStatus       `json:"runtime"`
 }
 
@@ -677,7 +677,7 @@ func boundedOrDefault(value, min, max, fallback int) int {
 // NarcicWhiteNodeList is the catalogue the dashboard chooses from.
 type NarcicWhiteNodeList struct {
 	Nodes     []NarcicWhiteNode `json:"nodes"`
-	UpdatedAt string         `json:"updatedAt"`
+	UpdatedAt string            `json:"updatedAt"`
 }
 
 type ValidatorEndpointInput struct {
@@ -1033,10 +1033,21 @@ func DefaultAppState() AppState {
 		ResolverProfiles:            []ResolverProfile{DefaultResolverProfile()},
 		SettingsProfiles:            []SettingsProfile{DefaultSettingsProfile()},
 		V2RayProfiles:               []V2RayProfile{},
-		V2RaySubscriptions:          []V2RaySubscription{},
-		V2RaySettingsProfiles:       []V2RaySettingsProfile{DefaultV2RaySettingsProfile()},
-		NarcicWhiteFrontingIPs:      []string{},
-		NarcicWhite:                    DefaultNarcicWhiteSettings(),
+		V2RaySubscriptions: []V2RaySubscription{
+			{
+				ID:   "default-free-v2ray-configs-top100",
+				Name: "Free V2ray Configs (Top 100)",
+				URL:  "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/top100.txt",
+			},
+			{
+				ID:   "default-free-v2ray-configs-verified",
+				Name: "Free V2ray Configs (Verified)",
+				URL:  "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt",
+			},
+		},
+		V2RaySettingsProfiles:  []V2RaySettingsProfile{DefaultV2RaySettingsProfile()},
+		NarcicWhiteFrontingIPs: []string{},
+		NarcicWhite:            DefaultNarcicWhiteSettings(),
 		Runtime: RuntimeStatus{
 			Status: RuntimeDisconnected,
 			Logs:   []string{"Idle"},

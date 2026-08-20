@@ -180,8 +180,8 @@ const maxValidatorSelectedRangeHosts = 4000000;
 const defaultValidatorWorkers = 128;
 const maxValidatorWorkers = 2048;
 const errorToastTTLMS = 6000;
-const narcicWhiteTelegramUrl = "https://t.me/YOUR_CHANNEL"; // TODO: set your real Telegram channel
-const narcicWhiteYoutubeUrl = "https://www.youtube.com/@YOUR_CHANNEL?sub_confirmation=1"; // TODO: set your real YouTube channel
+const narcicWhiteTelegramUrl = "https://t.me/Narcic_Support"; // TODO: set your real Telegram channel
+const narcicWhiteYoutubeUrl = "https://www.youtube.com/@valid_bv1608?sub_confirmation=1"; // TODO: set your real YouTube channel
 // Mirrors the limits in internal/model/narcicwhite_settings.go. Values outside them
 // are repaired on save, so these only decide when a control stops accepting more.
 const maxFrontingIPs = 5;
